@@ -2,11 +2,22 @@
   "name": "gptbc",
   "version": "0.3.0",
   "description": "GBC-first GB Studio workflow assistant with project linting, safe curated GitHub asset import, live plugin discovery, compatibility checks, provenance tracking, and build-readiness reports.",
-  "author": {"name": "GptBC contributors"},
+  "author": {
+    "name": "GptBC contributors"
+  },
   "homepage": "https://github.com/scootieccc/GptBC",
   "repository": "https://github.com/scootieccc/GptBC",
   "license": "MIT",
-  "keywords": ["gb-studio", "game-boy-color", "gbc", "pixel-art", "homebrew", "gbdk", "assets", "resources"],
+  "keywords": [
+    "gb-studio",
+    "game-boy-color",
+    "gbc",
+    "pixel-art",
+    "homebrew",
+    "gbdk",
+    "assets",
+    "resources"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "GptBC",
@@ -14,17 +25,23 @@
     "longDescription": "Inspect and improve GB Studio projects with Game Boy Color-first checks, curated GitHub resource discovery, license-aware asset importing, tile/palette validation, provenance tracking, plugin compatibility analysis and build-readiness reporting.",
     "developerName": "GptBC contributors",
     "category": "Developer Tools",
-    "capabilities": ["Interactive", "Read", "Write"],
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
     "websiteURL": "https://github.com/scootieccc/GptBC",
+    "privacyPolicyURL": "https://github.com/scootieccc/GptBC/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/scootieccc/GptBC/blob/main/TERMS.md",
     "defaultPrompt": [
       "Audit this GB Studio project for GBC release readiness.",
       "Find compatible GB Studio plugins or curated assets for this project.",
       "Find, inspect, and safely import a public GB Studio asset from the curated GitHub resource catalog.",
       "Check my backgrounds, sprites, palettes, and tile budgets."
     ],
-    "brandColor": "#F5C542",
-    "composerIcon": "./assets/gptbc-icon.svg",
-    "logo": "./assets/gptbc-logo.svg",
+    "brandColor": "#00D6AE",
+    "composerIcon": "./assets/gptbc-icon.png",
+    "logo": "./assets/gptbc-icon.png",
     "screenshots": []
   }
 }
