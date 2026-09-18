@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-labelledby="title desc">
+  <title id="title">GptBC</title>
+  <desc id="desc">GBC-first workflow assistant for GB Studio</desc>
+  <rect width="1280" height="640" rx="32" fill="#172035"/>
+  <g opacity="0.22" stroke="#52607a" stroke-width="1">
+    <path d="M0 64h1280M0 128h1280M0 192h1280M0 256h1280M0 320h1280M0 384h1280M0 448h1280M0 512h1280M0 576h1280"/>
+    <path d="M64 0v640M128 0v640M192 0v640M256 0v640M320 0v640M384 0v640M448 0v640M512 0v640M576 0v640M640 0v640M704 0v640M768 0v640M832 0v640M896 0v640M960 0v640M1024 0v640M1088 0v640M1152 0v640M1216 0v640"/>
+  </g>
+  <g transform="translate(84 122)">
+    <rect width="360" height="360" rx="52" fill="#F5C542"/>
+    <rect x="58" y="48" width="244" height="186" rx="22" fill="#172035"/>
+    <rect x="84" y="76" width="192" height="132" rx="4" fill="#9BBC0F"/>
+    <path d="M78 293h88" stroke="#172035" stroke-width="30" stroke-linecap="round"/>
+    <circle cx="265" cy="286" r="20" fill="#172035"/>
+    <circle cx="315" cy="250" r="20" fill="#172035"/>
+    <circle cx="330" cy="322" r="7" fill="#D83C37"/>
+  </g>
+  <text x="505" y="265" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="132" font-weight="700" fill="#F5C542">GptBC</text>
+  <text x="510" y="340" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="40" font-weight="700" fill="#F4F7FA">GBC-first workflow assistant</text>
+  <text x="510" y="397" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="27" fill="#ABB5C6">Assets · Plugins · QA · Resource import</text>
+  <circle cx="520" cy="458" r="10" fill="#D83C37"/>
+  <text x="545" y="468" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="27" font-weight="700" fill="#F5C542">Built for GB Studio Color workflows</text>
+</svg>
