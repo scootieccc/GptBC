@@ -1,0 +1,50 @@
+﻿# ========================================
+# GptBC
+# ========================================
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# GptBC runtime/cache
+.gptbc/
+GptBC_BUILD_REPORT.md
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary
+*.tmp
+*.temp
+*.bak
+*.log
+
+# Local test projects
+test-project/
+test-projects/
+sandbox/
+
+# Build/cache
+dist/
+build/
+.cache/
+
+# Secrets
+.env
+.env.*
+*.key
+*.pem

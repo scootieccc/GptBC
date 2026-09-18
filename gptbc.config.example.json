@@ -1,0 +1,25 @@
+{
+  "target": {
+    "platform": "gbc",
+    "colorMode": "colorOnly",
+    "gbStudioVersion": "4.3.2",
+    "nativeScreen": [
+      160,
+      144
+    ]
+  },
+  "lint": {
+    "backgroundTileLimit": 384,
+    "automaticPaletteWarningAt": 8,
+    "warnIfNotColorOnly": true,
+    "preferAutomaticTileFlip": true,
+    "requireNearestNeighbor": true
+  },
+  "plugins": {
+    "preferOfficial": true,
+    "backupBeforeInstall": true,
+    "allowEnginePlugins": true,
+    "warnOnEngineOverrides": true,
+    "warnOnScanlineInterruptUse": true
+  }
+}

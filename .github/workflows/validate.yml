@@ -1,0 +1,51 @@
+﻿name: GptBC Validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Python syntax check
+        run: |
+          python -m py_compile scripts/gptbc.py
+
+      - name: Run smoke tests
+        run: |
+          pytest tests -v
+
+      - name: Verify plugin manifest
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          manifest = Path(".codex-plugin/plugin.json")
+
+          assert manifest.exists(), "Missing plugin.json"
+
+          data = json.loads(manifest.read_text())
+
+          assert data["name"] == "gptbc"
+          assert "version" in data
+          assert "description" in data
+
+          print("GptBC manifest valid.")
+          PY

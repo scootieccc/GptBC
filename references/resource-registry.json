@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "name": "GB Studio Official Plugin Repository",
+      "kind": "gbstudioRepository",
+      "url": "https://plugins.gbstudio.dev/repository.json",
+      "enabled": true,
+      "priority": 100,
+      "notes": "Primary live catalog used by GB Studio 4.2+."
+    },
+    {
+      "name": "Official GB Studio Plugins GitHub",
+      "kind": "github",
+      "url": "https://github.com/gb-studio-dev/gb-studio-plugins",
+      "enabled": true,
+      "priority": 90
+    },
+    {
+      "name": "Gud GBS Plugins",
+      "kind": "github",
+      "url": "https://github.com/mikeleisz/gud_gbs_plugins",
+      "enabled": true,
+      "priority": 70
+    },
+    {
+      "name": "GB Studio Community Assets (legacy)",
+      "kind": "github",
+      "url": "https://github.com/DeerTears/GB-Studio-Community-Assets",
+      "enabled": false,
+      "archived": true,
+      "priority": 20,
+      "notes": "Archived read-only in 2025; useful as a legacy resource reference."
+    }
+  ]
+}
