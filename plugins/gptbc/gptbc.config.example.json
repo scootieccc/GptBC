@@ -3,10 +3,7 @@
     "platform": "gbc",
     "colorMode": "colorOnly",
     "gbStudioVersion": "4.3.2",
-    "nativeScreen": [
-      160,
-      144
-    ]
+    "nativeScreen": [160, 144]
   },
   "lint": {
     "backgroundTileLimit": 384,
@@ -21,5 +18,24 @@
     "allowEnginePlugins": true,
     "warnOnEngineOverrides": true,
     "warnOnScanlineInterruptUse": true
+  },
+  "resources": {
+    "useCuratedCatalog": true,
+    "preferCanonicalRepositories": true,
+    "includeArchivedByDefault": false,
+    "requireKnownLicenseForAutomaticImport": true,
+    "backupBeforeOverwrite": true,
+    "recordProvenance": true,
+    "cacheDirectory": ".gptbc/resource-cache",
+    "allowedDestinations": [
+      "assets/backgrounds",
+      "assets/sprites",
+      "assets/fonts",
+      "assets/music",
+      "assets/sounds",
+      "assets/avatars",
+      "assets/emotes",
+      "assets/ui"
+    ]
   }
 }
