@@ -1,0 +1,1 @@
+Branding assets are maintained in plugins/gptbc/assets and referenced by README/plugin manifests.
