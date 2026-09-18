@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/scootieccc/GptBC/main/assets/gptbc-banner.svg" alt="GptBC — GBC-first workflow assistant for GB Studio" width="100%">
+  <img src="assets/gptbc-banner.jpg" alt="GptBC — GBC-first workflow assistant for GB Studio" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/scootieccc/GptBC/main/assets/gptbc-icon.svg" alt="GptBC icon" width="128">
+  <img src="assets/gptbc-icon.svg" alt="GptBC icon" width="128">
 </p>
 
 <h1 align="center">GptBC</h1>
