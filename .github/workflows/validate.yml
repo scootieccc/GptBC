@@ -1,4 +1,4 @@
-﻿name: GptBC Validation
+name: GptBC Validation
 
 on:
   push:
@@ -23,29 +23,61 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-      - name: Python syntax check
+      - name: Python syntax checks
         run: |
           python -m py_compile scripts/gptbc.py
+          python -m py_compile scripts/resources.py
+          python -m py_compile plugins/gptbc/scripts/gptbc.py
+          python -m py_compile plugins/gptbc/scripts/resources.py
 
-      - name: Run smoke tests
-        run: |
-          pytest tests -v
+      - name: Run tests
+        run: pytest tests -v
 
-      - name: Verify plugin manifest
+      - name: Validate marketplace package
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
 
-          manifest = Path(".codex-plugin/plugin.json")
+          root_manifest_path = Path('.codex-plugin/plugin.json')
+          plugin_manifest_path = Path('plugins/gptbc/.codex-plugin/plugin.json')
+          marketplace_path = Path('.agents/plugins/marketplace.json')
+          icon_path = Path('plugins/gptbc/assets/gptbc-icon.png')
 
-          assert manifest.exists(), "Missing plugin.json"
+          required = [
+              root_manifest_path,
+              plugin_manifest_path,
+              marketplace_path,
+              Path('plugins/gptbc/skills/gptbc/SKILL.md'),
+              Path('PRIVACY.md'),
+              Path('TERMS.md'),
+              Path('SECURITY.md'),
+              Path('LICENSE'),
+              Path('assets/gptbc-icon.png'),
+              icon_path,
+          ]
+          missing = [str(p) for p in required if not p.exists()]
+          assert not missing, f'Missing required release files: {missing}'
 
-          data = json.loads(manifest.read_text())
+          root_manifest = json.loads(root_manifest_path.read_text(encoding='utf-8'))
+          plugin_manifest = json.loads(plugin_manifest_path.read_text(encoding='utf-8'))
+          marketplace = json.loads(marketplace_path.read_text(encoding='utf-8'))
 
-          assert data["name"] == "gptbc"
-          assert "version" in data
-          assert "description" in data
+          assert plugin_manifest['name'] == 'gptbc'
+          assert plugin_manifest['version'] == root_manifest['version']
+          assert plugin_manifest['interface']['composerIcon'] == './assets/gptbc-icon.png'
+          assert plugin_manifest['interface']['logo'] == './assets/gptbc-icon.png'
+          assert plugin_manifest['interface']['privacyPolicyURL'].endswith('/PRIVACY.md')
+          assert plugin_manifest['interface']['termsOfServiceURL'].endswith('/TERMS.md')
 
-          print("GptBC manifest valid.")
+          plugins = marketplace.get('plugins', [])
+          assert any(
+              p.get('name') == 'gptbc'
+              and p.get('source', {}).get('source') == 'local'
+              and p.get('source', {}).get('path') == './plugins/gptbc'
+              for p in plugins
+          ), 'Marketplace does not point at ./plugins/gptbc'
+
+          assert icon_path.read_bytes().startswith(b'\x89PNG\r\n\x1a\n'), 'Plugin icon is not a PNG'
+          print('GptBC marketplace package is structurally valid.')
           PY
