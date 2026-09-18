@@ -32,13 +32,14 @@ jobs:
           cp assets/gptbc-icon.png plugins/gptbc/assets/gptbc-icon.png
           cp assets/gptbc-logo-dark.png plugins/gptbc/assets/gptbc-logo-dark.png
           file assets/gptbc-banner.png assets/gptbc-icon.png assets/gptbc-logo-dark.png
+          rm -rf branding-base64
       - name: Commit branding
         if: steps.check.outputs.ready == 'true'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add assets/gptbc-banner.png assets/gptbc-icon.png assets/gptbc-logo-dark.png plugins/gptbc/assets/gptbc-icon.png plugins/gptbc/assets/gptbc-logo-dark.png
+          git add -A
           git diff --cached --quiet && exit 0
           git commit -m 'Replace branding with supplied GptBC artwork'
           git push
