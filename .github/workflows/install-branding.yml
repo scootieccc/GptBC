@@ -1,0 +1,44 @@
+name: Install supplied branding assets
+
+on:
+  push:
+    paths:
+      - 'branding-base64/**'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check all chunks exist
+        id: check
+        shell: bash
+        run: |
+          test "$(find branding-base64/banner -type f -name '*.part' | wc -l)" -eq 7 || exit 0
+          test "$(find branding-base64/icon -type f -name '*.part' | wc -l)" -eq 2 || exit 0
+          test "$(find branding-base64/logo-dark -type f -name '*.part' | wc -l)" -eq 5 || exit 0
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
+      - name: Decode supplied PNGs
+        if: steps.check.outputs.ready == 'true'
+        shell: bash
+        run: |
+          mkdir -p assets plugins/gptbc/assets
+          cat $(find branding-base64/banner -type f -name '*.part' | sort) | base64 -d > assets/gptbc-banner.png
+          cat $(find branding-base64/icon -type f -name '*.part' | sort) | base64 -d > assets/gptbc-icon.png
+          cat $(find branding-base64/logo-dark -type f -name '*.part' | sort) | base64 -d > assets/gptbc-logo-dark.png
+          cp assets/gptbc-icon.png plugins/gptbc/assets/gptbc-icon.png
+          cp assets/gptbc-logo-dark.png plugins/gptbc/assets/gptbc-logo-dark.png
+          file assets/gptbc-banner.png assets/gptbc-icon.png assets/gptbc-logo-dark.png
+      - name: Commit branding
+        if: steps.check.outputs.ready == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/gptbc-banner.png assets/gptbc-icon.png assets/gptbc-logo-dark.png plugins/gptbc/assets/gptbc-icon.png plugins/gptbc/assets/gptbc-logo-dark.png
+          git diff --cached --quiet && exit 0
+          git commit -m 'Replace branding with supplied GptBC artwork'
+          git push
