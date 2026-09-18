@@ -13,6 +13,11 @@
 - Added per-import provenance logging with repository URL, commit SHA, license, source path, checksum and destination.
 - Added protection against importing executable/script payloads as ordinary assets.
 - Updated Codex skill behavior and marketplace metadata for curated resource discovery/import.
+- Added the public GptBC release icon and wired it into the Codex plugin manifest and README.
+- Added public Privacy Policy and Terms of Use documents and linked them from plugin metadata.
+- Added an explicit independent-project/trademark disclaimer to public documentation.
+- Expanded GitHub Actions validation to check the marketplace manifest, installable plugin package, branding asset, policy files, Python syntax and tests.
+- Refined the README for public marketplace installation and release presentation.
 
 ## 0.2.0 — 2026-09-18
 
