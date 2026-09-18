@@ -3,7 +3,7 @@ name: Install supplied branding assets
 on:
   push:
     paths:
-      - 'branding-base64/**'
+      - 'branding-base64/banner.b64'
 
 permissions:
   contents: write
@@ -13,26 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check banner chunks
-        id: check
-        shell: bash
-        run: |
-          count="$(find branding-base64/banner -type f -name '*.part' 2>/dev/null | wc -l)"
-          if [ "$count" -ne 7 ]; then
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          echo "ready=true" >> "$GITHUB_OUTPUT"
       - name: Decode supplied banner
-        if: steps.check.outputs.ready == 'true'
         shell: bash
         run: |
           mkdir -p assets
-          cat $(find branding-base64/banner -type f -name '*.part' | sort) | base64 -d > assets/gptbc-banner.jpg
+          base64 -d branding-base64/banner.b64 > assets/gptbc-banner.jpg
           file assets/gptbc-banner.jpg
-          rm -rf branding-base64/banner
+          rm -f branding-base64/banner.b64
       - name: Commit banner
-        if: steps.check.outputs.ready == 'true'
         shell: bash
         run: |
           git config user.name 'github-actions[bot]'
