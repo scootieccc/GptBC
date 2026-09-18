@@ -1,12 +1,18 @@
-# GptBC
+<p align="center">
+  <img src="assets/gptbc-icon.png" alt="GptBC logo" width="256">
+</p>
 
-**GptBC** is a Game Boy Color-first workflow assistant for **GB Studio** projects, distributed as a Codex plugin marketplace package.
+<h1 align="center">GptBC</h1>
 
-It helps creators audit projects, validate GBC assets, discover compatible plugins, find reusable public resources, safely import selected upstream assets, and generate build-readiness reports.
+<p align="center"><strong>GBC-first tooling, resource discovery, asset QA, and release checks for GB Studio.</strong></p>
+
+**GptBC** is a Game Boy Color-first workflow assistant for **GB Studio** projects, distributed as a public Codex plugin marketplace package. It helps creators audit projects, validate GBC assets, discover compatible plugins, find reusable public resources, safely import selected upstream assets, and generate build-readiness reports.
+
+> **Independent project:** GptBC is not affiliated with, sponsored by, or endorsed by Nintendo, GB Studio, or OpenAI. Product names and trademarks belong to their respective owners.
 
 ## Install from Codex
 
-In **Add plugin marketplace** use:
+In **Add plugin marketplace**, use:
 
 ```text
 Source
@@ -19,7 +25,21 @@ Sparse paths
 [leave completely blank]
 ```
 
-Then install **GptBC** from the imported marketplace.
+Then choose **Add marketplace** and install **GptBC** from the imported marketplace.
+
+The public marketplace manifest is:
+
+```text
+.agents/plugins/marketplace.json
+```
+
+The installable plugin package is:
+
+```text
+plugins/gptbc/
+```
+
+For detailed setup and troubleshooting, see [docs/INSTALL.md](docs/INSTALL.md).
 
 ## Current release
 
@@ -34,11 +54,24 @@ Color Only
 Windows-first local workflow
 ```
 
+## What GptBC does
+
+- Audits GB Studio projects with a GBC-first rule set.
+- Checks native 160x144 targeting and 8x8 tile alignment.
+- Measures Color Only background tile usage and flip-equivalent tile savings.
+- Checks background size limits, sprite source colors, and palette pressure.
+- Inventories project-local GB Studio plugins and flags likely engine-file collisions.
+- Searches the live official GB Studio plugin repository with version filtering.
+- Installs selected official plugins with backup-first behavior.
+- Discovers curated public GitHub resources for GB Studio creation.
+- Safely caches, inspects, and imports selected third-party assets with provenance records.
+- Generates repeatable build-readiness reports.
+
 ## Curated GB Studio resource importer
 
-GptBC now includes a deduplicated catalog of **73 canonical public GitHub repositories** selected from the project's curated GB Studio resource research. It covers asset packs, backgrounds/sprites, fonts, palettes, music/SFX tooling, templates, examples, plugins, engine extensions and workflow tools.
+GptBC includes a deduplicated catalog of **73 canonical public GitHub repositories** selected from the project's curated GB Studio resource research. It covers asset packs, backgrounds/sprites, fonts, palettes, music/SFX tooling, templates, examples, plugins, engine extensions, and workflow tools.
 
-GptBC does **not** bundle or relicense third-party assets. It pulls selected resources from their upstream GitHub repositories and keeps their original licensing visible.
+GptBC does **not** bundle or relicense third-party assets. It pulls selected resources from upstream GitHub repositories and keeps their original licensing visible.
 
 ### Resource commands
 
@@ -91,13 +124,13 @@ Before copying a third-party asset into a project, GptBC:
 - requires the repository to be in the curated canonical catalog;
 - checks current public GitHub repository metadata;
 - excludes archived repositories by default;
-- blocks executable/script payloads from the asset importer;
-- checks the upstream GitHub license and blocks automatic import for `UNKNOWN` / `NOASSERTION` unless the user has separately verified reuse rights;
+- blocks executable/script payloads from the ordinary asset importer;
+- checks the upstream GitHub license and blocks automatic import for `UNKNOWN` / `NOASSERTION` unless reuse rights have been separately verified;
 - validates PNGs against GBC/GB Studio constraints where applicable;
 - requires an explicit destination for ambiguous PNGs;
 - refuses accidental overwrite by default;
 - backs up replaced project assets when `--overwrite` is used;
-- records repository URL, commit SHA, license, source path, checksum and destination in a provenance log.
+- records repository URL, commit SHA, license, source path, checksum, and destination in a provenance log.
 
 Imported-resource provenance is stored at:
 
@@ -152,15 +185,15 @@ PNG inspection uses Pillow:
 python -m pip install Pillow
 ```
 
-## Existing project commands
+## Project commands
 
-Audit:
+Audit a project:
 
 ```powershell
 python .\scripts\gptbc.py audit "C:\Games\MyGBStudioGame"
 ```
 
-Build-readiness report:
+Generate a build-readiness report:
 
 ```powershell
 python .\scripts\gptbc.py report "C:\Games\MyGBStudioGame"
@@ -195,15 +228,23 @@ GptBC/
 ├── tests/
 ├── CHANGELOG.md
 ├── CONTRIBUTING.md
+├── PRIVACY.md
 ├── SECURITY.md
+├── TERMS.md
 └── LICENSE
 ```
 
-## Safety, trust and licensing
+## Safety, trust, and licensing
 
-"Curated" means the repository is a selected public upstream source relevant to GB Studio and deduplicated against known mirrors. It does **not** mean GptBC grants rights to every file or guarantees third-party code is defect-free.
+"Curated" means a repository is a selected public upstream source relevant to GB Studio and deduplicated against known mirrors. It does **not** mean GptBC grants rights to every file or guarantees third-party code is defect-free.
 
-GptBC never treats a missing license as permission. Users remain responsible for complying with upstream licenses, attribution requirements and asset-specific terms.
+GptBC never treats a missing license as permission. Users remain responsible for complying with upstream licenses, attribution requirements, and asset-specific terms.
+
+For project policies, see [Privacy](PRIVACY.md), [Terms](TERMS.md), and [Security](SECURITY.md).
+
+## Contributing
+
+Bug reports, compatibility findings, resource suggestions, and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
