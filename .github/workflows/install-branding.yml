@@ -13,27 +13,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Check all chunks exist
+      - name: Check banner chunks
         id: check
         shell: bash
         run: |
-          test "$(find branding-base64/banner -type f -name '*.part' | wc -l)" -eq 7 || exit 0
-          test "$(find branding-base64/icon -type f -name '*.part' | wc -l)" -eq 2 || exit 0
-          test "$(find branding-base64/logo-dark -type f -name '*.part' | wc -l)" -eq 5 || exit 0
-          echo 'ready=true' >> "$GITHUB_OUTPUT"
-      - name: Decode supplied PNGs
+          count="$(find branding-base64/banner -type f -name '*.part' 2>/dev/null | wc -l)"
+          if [ "$count" -ne 7 ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+      - name: Decode supplied banner
         if: steps.check.outputs.ready == 'true'
         shell: bash
         run: |
-          mkdir -p assets plugins/gptbc/assets
-          cat $(find branding-base64/banner -type f -name '*.part' | sort) | base64 -d > assets/gptbc-banner.png
-          cat $(find branding-base64/icon -type f -name '*.part' | sort) | base64 -d > assets/gptbc-icon.png
-          cat $(find branding-base64/logo-dark -type f -name '*.part' | sort) | base64 -d > assets/gptbc-logo-dark.png
-          cp assets/gptbc-icon.png plugins/gptbc/assets/gptbc-icon.png
-          cp assets/gptbc-logo-dark.png plugins/gptbc/assets/gptbc-logo-dark.png
-          file assets/gptbc-banner.png assets/gptbc-icon.png assets/gptbc-logo-dark.png
-          rm -rf branding-base64
-      - name: Commit branding
+          mkdir -p assets
+          cat $(find branding-base64/banner -type f -name '*.part' | sort) | base64 -d > assets/gptbc-banner.jpg
+          file assets/gptbc-banner.jpg
+          rm -rf branding-base64/banner
+      - name: Commit banner
         if: steps.check.outputs.ready == 'true'
         shell: bash
         run: |
@@ -41,5 +39,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --quiet && exit 0
-          git commit -m 'Replace branding with supplied GptBC artwork'
+          git commit -m 'Install supplied GptBC banner artwork'
           git push
