@@ -40,8 +40,8 @@
       "Check my backgrounds, sprites, palettes, and tile budgets."
     ],
     "brandColor": "#00D6AE",
-    "composerIcon": "./assets/gptbc-icon.png",
-    "logo": "./assets/gptbc-icon.png",
+    "composerIcon": "./assets/gptbc-icon.svg",
+    "logo": "./assets/gptbc-icon.svg",
     "screenshots": []
   }
 }
