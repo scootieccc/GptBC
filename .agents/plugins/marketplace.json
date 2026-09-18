@@ -1,0 +1,20 @@
+{
+  "name": "gptbc",
+  "interface": {
+    "displayName": "GptBC"
+  },
+  "plugins": [
+    {
+      "name": "gptbc",
+      "source": {
+        "source": "local",
+        "path": "./plugins/gptbc"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}
